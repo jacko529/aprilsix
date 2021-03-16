@@ -3,12 +3,16 @@ SAIL=./vendor/bin/sail
 
 #### working env
 
-build-up: env composer docker-up migrate-fresh import-data npm-install npm-prod create-indexes
+build-up: env composer docker-up wait migrate-fresh import-data npm-install npm-prod create-indexes
 	@echo ""
 	@echo "-------------------------------------------------------"
 	@echo "Environment started and available at: http://localhost/"
 	@echo "-------------------------------------------------------"
 	@echo ""
+
+wait:
+	@echo "Sleeping to wait for other services"
+	sleep 10
 
 
 env:
