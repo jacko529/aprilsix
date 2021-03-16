@@ -7,13 +7,13 @@ To run the project
 make build-up
 ```
 
-To ensure the models are loaded into meilisearch you may need to run 
+To ensure the models are loaded into meilisearch you need to run 
 
 ```
 make run-queue
 ```
 
-Go to http://localhost
+Then go to http://localhost
 
 ## Tests
 
