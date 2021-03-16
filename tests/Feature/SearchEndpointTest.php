@@ -45,11 +45,22 @@ class SearchEndpointTest extends TestCase
     public function test_search_0_results()
     {
 
-        $response = $this->getJson('/api/aprilsix/search?search=');
+        $response = $this->getJson('/api/aprilsix/search?search=""');
 
         $response->assertStatus(200);
         $response->assertJsonPath('data.products', []);
         $response->assertJsonPath('data.customer', []);
+
+    }
+
+    public function test_search_error()
+    {
+
+        $response = $this->getJson('/api/aprilsix/search');
+
+
+        $response->assertStatus(422);
+        $response->assertJsonPath('error', 'Search Query String Is Required');
 
     }
 

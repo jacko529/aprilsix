@@ -25,6 +25,7 @@ class Handler extends ExceptionHandler
         AuthenticationException::class,
         AuthorizationException::class,
         ModelNotFoundException::class,
+        InvalidParameterException::class,
         RouteNotFoundException::class
     ];
 
@@ -41,7 +42,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
-dd($exception);
+
         if($exception instanceof HttpExceptionInterface) {
 
             return new JsonResponse(['error' => $exception->getMessage()], $exception->getStatusCode());
@@ -61,6 +62,10 @@ dd($exception);
         } else if ($exception instanceof RouteNotFoundException) {
 
             return new JsonResponse((object) [], 404);
+
+        }  else if ($exception instanceof InvalidParameterException) {
+
+            return new JsonResponse(['error' => $exception->getMessage()], 422);
 
         } else {
 

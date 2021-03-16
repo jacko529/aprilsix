@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use App\Exceptions\InvalidParameterException;
 
 class SearchRequest extends FormRequest
 {
@@ -37,10 +38,14 @@ class SearchRequest extends FormRequest
         ];
     }
 
+    /**
+     * @param Validator $validator
+     * @throws InvalidParameterException
+     */
     protected function failedValidation(Validator $validator)
     {
 
-        return back()->withErrors($validator->errors());
+        throw new InvalidParameterException($validator->errors()->first());
 
     }
 }
