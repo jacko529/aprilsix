@@ -67,7 +67,7 @@ flush-indexes:
 	${SAIL} php artisan scout:flush 'App\Models\Customer'
 	${SAIL} php artisan scout:flush 'App\Models\Product'
 
-create-indexes: flush-indexes create-customer-index create-product-index import-indexes
+create-indexes: create-customer-index create-product-index import-indexes
 
 #### Tests
 
